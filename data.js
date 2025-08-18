@@ -1,8 +1,8 @@
-const menuArray = [
+export const menuArray = [
     {
         name: "Pizza",
         ingredients: ["pepperoni", "mushroom", "mozarella"],
-        id: 0,
+        id: crypto.randomUUID(),
         price: 14,
         emoji: "🍕"
     },
@@ -11,76 +11,76 @@ const menuArray = [
         ingredients: ["beef patty", "cheddar", "lettuce", "tomato", "onion"],
         price: 12,
         emoji: "🍔",
-        id: 1
+        id: crypto.randomUUID()
     },
     {
         name: "Double Bypass Burger",
         ingredients: ["two beef patties", "bacon", "four cheeses", "special sauce"],
         price: 18,
         emoji: "🍔🍔",
-        id: 2
+        id: crypto.randomUUID()
     },
     {
         name: "Veggie Burger",
         ingredients: ["plant-based patty", "lettuce", "tomato", "pickle", "avocado"],
         price: 13,
         emoji: "🥗🍔",
-        id: 3
+        id: crypto.randomUUID()
     },
     {
         name: "Fries",
         ingredients: ["potatoes", "salt"],
         price: 4,
         emoji: "🍟",
-        id: 4
+        id: crypto.randomUUID()
     },
     {
         name: "Onion Rings",
         ingredients: ["onions", "batter"],
         price: 5,
         emoji: "🧅",
-        id: 5
+        id: crypto.randomUUID()
     },
     {
         name: "Cola",
         ingredients: ["carbonated water", "high fructose corn syrup", "caramel color"],
         price: 3,
         emoji: "🥤",
-        id: 6
+        id: crypto.randomUUID()
     },
     {
         name: "Lemonade",
         ingredients: ["lemons", "sugar", "water"],
         price: 4,
         emoji: "🍋",
-        id: 7
+        id: crypto.randomUUID()
     },
     {
         name: "Milkshake",
         ingredients: ["milk", "ice cream", "flavoring"],
         price: 6,
         emoji: "🥛",
-        id: 8
+        id: crypto.randomUUID()
     },
     {
         name: "Coffee",
         ingredients: ["brewed coffee beans"],
         price: 4,
         emoji: "☕",
-        id: 9
+        id: crypto.randomUUID()
     },
     {
         name: "Tea",
         ingredients: ["tea leaves", "hot water"],
         price: 3,
         emoji: "🍵",
-        id: 10
+        id: crypto.randomUUID()
     },
     {
         name: "Beer",
         ingredients: ["grain", "hops", "yeast", "water"],
         price: 12,
         emoji: "🍺",
-        id: 11 // Adjusted ID due to new additions
+        id: crypto.randomUUID()
     }
 ];
