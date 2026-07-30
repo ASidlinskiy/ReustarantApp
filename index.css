@@ -1,64 +1,109 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-} 
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
 
-.wrapper{
+.wrapper {
     max-width: 600px;
     width: 100%;
-    margin:0 auto;
+    margin: 0 auto;
     display: block;
-    outline: 1px solid pink;
+    padding: 0 1em;
 }
-h1{
+
+h1 {
     font-size: 1.2em;
 }
-.hero-subtext{
+
+.hero-subtext {
    display: block;
    font-size: 0.8em;
    font-weight: 400;
 }
-.menu-item{
+
+.menu-item {
     display: flex;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 1em;
 }
 
-.menu-item-emoji{
-    display: inherit;
-    height: 10px;
-    font-size: 3.5em;
-    width: 80px;
-    justify-self: flex-start;
-    align-self:flex-start;
+.menu-item-emoji {
+    flex: 0 0 auto;
+    width: 2ch;
+    margin: 0;
+    font-size: 2.5em;
+    line-height: 1;
+    text-align: center;
 }
-.menu-item-selected{
+
+.menu-item-description {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+.menu-item-selected {
    display: none;
    margin: 0 auto;
    border: 1px solid #16DB99;
    padding: 0 15px;
    position: fixed;
-   bottom:0px;
+   bottom: 0px;
    width: 100%;
    max-width: 570px;
    background-color: white;
 }
-.menu-item-buttons{
-    display: inherit;
-    justify-items: flex-end;
-    align-self:center;
+
+.menu-item-buttons {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
 }
 
-.menu-item-selected-form-cart{
+.menu-item-form-cart {
     list-style-type: none;
     padding-left: 0;
+    margin: 0;
+}
+
+.menu-item-form-cart .row > div {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 0.5em;
     flex-direction: row;
 }
-button:active,
-button:target,
-button:hover,
-.active{
+
+button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.4em 0.9em;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover:not(.active) {
+    background-color: #eafbf4;
+    border: 1px solid #16DB99;
+}
+
+button:focus-visible {
+    outline: 2px solid #0b8f63;
+    outline-offset: 2px;
+}
+
+.active {
     background-color: #16DB99;
     border: 1px solid #16DB99;
+    color: #04331f;
+    font-weight: 600;
 }

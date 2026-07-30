@@ -2,7 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Al's Diner — Menu &amp; Online Ordering</title>
+        <meta name="description" content="Order pizza, burgers, sides and drinks from Al's Diner: where the taste is prime.">
         <link rel="shortcut icon" href="img/favicon_32x32.ico" type="image/x-icon">
         <link rel="stylesheet" href="index.css">
     </head>
@@ -11,26 +13,26 @@
             <header>
                 <div class="wrapper">
                     <div class="hero">
-                        <h1>Al's Diner: where the taste is prime<span class="hero-subtext">Sit, savor, and feel sublime.</span></h1>       
+                        <h1>Al's Diner: where the taste is prime<span class="hero-subtext">Sit, savor, and feel sublime.</span></h1>
                     </div>
                 </div>
             </header>
             <div class="wrapper">
                 <div class="menu">
-                    
+
                 </div>
                 <div class="menu-item-selected">
-                </div>   
+                </div>
                 <template id="menuItemTemplate">
                     <div class="menu-item">
-                        <p class="menu-item-emoji">${emoji}</p>
+                        <p class="menu-item-emoji"></p>
                         <div class="menu-item-description">
-                            <h2 class="menu-item-description-heading">${name}</h2>
-                            <p class="menu-item-description-ingredients">${ingredients}</p>
-                            <p class="menu-item-description-price">$${price}</p>
+                            <h2 class="menu-item-description-heading"></h2>
+                            <p class="menu-item-description-ingredients"></p>
+                            <p class="menu-item-description-price"></p>
                         </div>
                         <div class="menu-item-buttons">
-                            <button class="menu-item-button-add" data-menu-id="${id}" aria-label="Add ${name} to cart">add</button>
+                            <button class="menu-item-button-add" type="button" aria-pressed="false">add</button>
                         </div>
                     </div>
                     <form class="menu-item-form">
@@ -41,19 +43,18 @@
                                     <div>
                                         <p class="menu-item-form-cart-emoji"></p>
                                         <p class="menu-item-form-cart-name"></p>
-                                        <button data-menu-id="${selectedItem.id}" class="menu-item-form-cart-btn">Remove</button>
+                                        <button type="button" class="menu-item-form-cart-btn">Remove</button>
                                         <p class="menu-item-form-cart-price"></p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                        <p class="menu-item-selected-order-totall">Total price</p>                        
+                        <p class="menu-item-selected-order-total" aria-live="polite">Total: $0</p>
                         <button type="submit">Complete order</button>
-                    </form>                    
-                </template>                             
+                    </form>
+                </template>
             </div>
         </main>
-	<script src="index.js" type="module"></script>
+        <script src="index.js" type="module"></script>
     </body>
 </html>
-
