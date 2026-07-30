@@ -1,5 +1,7 @@
 # Al's Diner
 
+**Live: [als-diner.netlify.app](https://als-diner.netlify.app)**
+
 A small vanilla JS + Vite frontend for browsing Al's Diner's menu, building an order in a cart, and submitting it.
 
 ## Getting started
