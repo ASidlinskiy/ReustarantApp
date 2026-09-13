@@ -14,7 +14,7 @@ export default [
     },
   },
   {
-    files: ["tests/**/*.js", "playwright.config.js"],
+    files: ["tests/**/*.js", "playwright.config.js", "scripts/**/*.js"],
     languageOptions: {
       globals: {
         ...globals.node,

@@ -6,27 +6,40 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-lint-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
       - run: npm ci
-
       - run: npm run lint
-
       - run: npm run build
-
       - run: npx playwright install --with-deps chromium
-
       - run: npm test
         env:
           CI: true
-
       - run: npm audit --audit-level=high
+      - run: npm run lighthouse
+      - name: Save browser test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

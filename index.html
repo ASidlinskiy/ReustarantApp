@@ -1,60 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Al's Diner — Menu &amp; Online Ordering</title>
-        <meta name="description" content="Order pizza, burgers, sides and drinks from Al's Diner: where the taste is prime.">
-        <link rel="shortcut icon" href="img/favicon_32x32.ico" type="image/x-icon">
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        <main>
-            <header>
-                <div class="wrapper">
-                    <div class="hero">
-                        <h1>Al's Diner: where the taste is prime<span class="hero-subtext">Sit, savor, and feel sublime.</span></h1>
-                    </div>
-                </div>
-            </header>
-            <div class="wrapper">
-                <div class="menu">
-
-                </div>
-                <div class="menu-item-selected">
-                </div>
-                <template id="menuItemTemplate">
-                    <div class="menu-item">
-                        <p class="menu-item-emoji"></p>
-                        <div class="menu-item-description">
-                            <h2 class="menu-item-description-heading"></h2>
-                            <p class="menu-item-description-ingredients"></p>
-                            <p class="menu-item-description-price"></p>
-                        </div>
-                        <div class="menu-item-buttons">
-                            <button class="menu-item-button-add" type="button" aria-pressed="false">add</button>
-                        </div>
-                    </div>
-                    <form class="menu-item-form">
-                        <h2>Your order</h2>
-                        <div>
-                            <ul class="menu-item-form-cart">
-                                <li class="row">
-                                    <div>
-                                        <p class="menu-item-form-cart-emoji"></p>
-                                        <p class="menu-item-form-cart-name"></p>
-                                        <button type="button" class="menu-item-form-cart-btn">Remove</button>
-                                        <p class="menu-item-form-cart-price"></p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <p class="menu-item-selected-order-total" aria-live="polite">Total: $0</p>
-                        <button type="submit">Complete order</button>
-                    </form>
-                </template>
-            </div>
-        </main>
-        <script src="index.js" type="module"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al's Diner — Menu &amp; Online Ordering</title>
+    <meta
+      name="description"
+      content="Order pizza, burgers, sides and drinks from Al's Diner: where the taste is prime."
+    />
+    <link rel="shortcut icon" href="img/favicon_32x32.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="wrapper site-header">
+      <h1>
+        Al's Diner: where the taste is prime<span class="hero-subtext"
+          >Sit, savor, and feel sublime.</span
+        >
+      </h1>
+      <a href="#order-panel">View your order</a>
+    </header>
+    <main class="wrapper ordering-layout">
+      <section aria-labelledby="menu-title">
+        <h2 id="menu-title">Menu</h2>
+        <noscript><p>Enable JavaScript to build and send an order request.</p></noscript>
+        <p id="app-status" role="status">
+          Loading the menu… <a href="./">Reload the page if the menu does not appear.</a>
+        </p>
+        <div class="menu"><!--menu-items--></div>
+      </section>
+      <aside id="order-panel" tabindex="-1" aria-labelledby="order-title">
+        <h2 id="order-title">Your order</h2>
+        <p id="empty-cart">Your cart is empty. Add something from the menu to get started.</p>
+        <form
+          name="pickup-orders"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="menu-item-form"
+          hidden
+        >
+          <input type="hidden" name="form-name" value="pickup-orders" />
+          <input type="hidden" name="request-reference" />
+          <input type="hidden" name="order-summary" />
+          <input type="hidden" name="estimated-subtotal" />
+          <input type="hidden" name="currency" value="USD" />
+          <input type="hidden" name="pickup" value="ASAP" />
+          <p hidden>
+            <label
+              >Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"
+            /></label>
+          </p>
+          <fieldset>
+            <legend class="sr-only">Order and pickup details</legend>
+            <ul class="menu-item-form-cart" aria-label="Order items"></ul>
+            <p class="menu-item-selected-order-total" aria-live="polite" aria-atomic="true">
+              Estimated subtotal: $0.00
+            </p>
+            <p><strong>ASAP pickup · Pay at pickup</strong></p>
+            <p class="help">
+              Staff will call to confirm availability, the final price and pickup. Sending a request
+              does not confirm an order.
+            </p>
+            <label for="customer-name">Name</label>
+            <input
+              id="customer-name"
+              name="customer-name"
+              autocomplete="name"
+              required
+              maxlength="100"
+            />
+            <label for="phone">Phone number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              inputmode="tel"
+              required
+              maxlength="40"
+              aria-describedby="phone-help"
+            />
+            <p id="phone-help" class="help">Include your area or country code. Use 7–15 digits.</p>
+            <label for="notes">Order notes <span class="help">(optional)</span></label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              maxlength="500"
+              aria-describedby="notes-help"
+            ></textarea>
+            <p id="notes-help" class="help">
+              Up to 500 characters. Your details are sent to the restaurant to handle this request.
+            </p>
+            <button type="submit" class="primary">Send order request</button>
+          </fieldset>
+        </form>
+        <p id="submission-status" role="status" aria-live="polite"></p>
+        <p id="submission-error" role="alert" tabindex="-1" hidden></p>
+        <section id="receipt" tabindex="-1" aria-labelledby="receipt-title" hidden>
+          <h3 id="receipt-title">Order request received—awaiting restaurant confirmation</h3>
+          <p id="receipt-reference"></p>
+          <ul id="receipt-items"></ul>
+          <p id="receipt-total"></p>
+          <p>
+            ASAP pickup · Pay at pickup. Staff will call to confirm availability, the final price
+            and pickup time.
+          </p>
+          <button id="start-again" type="button">Start another order</button>
+        </section>
+      </aside>
+    </main>
+    <template id="cartRowTemplate">
+      <li class="cart-row">
+        <div class="cart-row-heading">
+          <span class="cart-name"></span><span class="cart-price"></span>
+        </div>
+        <div class="quantity-controls">
+          <button type="button" data-action="decrease">−</button>
+          <output class="quantity"></output>
+          <button type="button" data-action="increase">+</button>
+          <button type="button" data-action="remove">Remove</button>
+        </div>
+      </li>
+    </template>
+    <script src="index.js" type="module"></script>
+  </body>
 </html>
